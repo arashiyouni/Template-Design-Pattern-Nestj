@@ -3,6 +3,9 @@
 /node_modules
 /build
 
+#dockersito
+/db
+
 # Logs
 logs
 *.log
