@@ -1,7 +1,10 @@
-import { Prop, Schema } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose"
+
 
 @Schema()
-export class User {
+export class SocialMediaUser extends Document {
+
     @Prop({ required: true })
     username: string
 
@@ -29,3 +32,5 @@ export class User {
     @Prop({ required: true })
     isActive: boolean
 }
+
+export const SocialMediaSchema = SchemaFactory.createForClass(SocialMediaUser)
