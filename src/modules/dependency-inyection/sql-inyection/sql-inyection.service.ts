@@ -4,6 +4,7 @@ import { IUser } from 'src/common/interface/IOperation';
 import { ISocialMedia } from 'src/common/interface/queries-cmmons.interface';
 import { User } from 'src/models/entities/user';
 import { Repository } from 'typeorm';
+import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Injectable()
 export class SqlInyectionService implements ISocialMedia<IUser>  {
@@ -30,12 +31,11 @@ export class SqlInyectionService implements ISocialMedia<IUser>  {
         return user
     }
     async Update(value: IUser): Promise<any> {
-        const {username, name, lastname, email, password, description, country, birthday, isActive } = value
-        const user = this.userRepository
+        const {username, name, lastname, email, password, description, country, birthday, isActive, id } = value
+        const user = await this.userRepository
             .createQueryBuilder()
-            .insert()
-            .into(User)
-            .values({
+            .update(User)
+            .set({
                 username: username,
                 name: name,
                 lastname: lastname,
@@ -46,9 +46,27 @@ export class SqlInyectionService implements ISocialMedia<IUser>  {
                 birthday: birthday,
                 isActive: isActive
             })
+            .where("id_user = :id_user", { id: id })
+            .execute()
+
+     return user
     }
-    async Create(value: IUser): Promise<IUser> {
-        const saveUser = await this.userRepository.save(value)
+    async Create(value: IUser): Promise<any> {
+        const saveUser = await this.userRepository
+        .createQueryBuilder()
+        .insert()
+        .values({
+            username: value.username,
+            name: value.name,
+            lastname: value.lastname,
+            email: value.email,
+            password: value.password,
+            description: value.description,
+            country: value.country,
+            birthday: value.birthday,
+            isActive: value.isActive
+        }).execute()
+
         return saveUser
     }
     async Delete(value: string): Promise<any> {
