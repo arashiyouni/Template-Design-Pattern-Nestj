@@ -1,0 +1,10 @@
+[
+  {
+    "_id": {"$oid": "672d2d546e3e8d66a6175c36"},
+    "date_publish": "01-01-2024",
+    "description": "El cangrejo camina hacia atras por X razón",
+    "tag": "[1]",
+    "title": "Por qué el cangrejo camina hacia atrás",
+    "username": "Naki"
+  }
+]

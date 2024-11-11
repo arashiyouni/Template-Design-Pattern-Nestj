@@ -1,0 +1,15 @@
+[
+  {
+    "_id": {"$oid": "673216991b531161a1773fa1"},
+    "__v": 0,
+    "birthday": {"$date": "2024-10-10T00:00:00.000Z"},
+    "country": 170,
+    "description": "prueba feli",
+    "email": "tester@gmail.com",
+    "isActive": true,
+    "lastname": "User lastname",
+    "name": "User Test in social media",
+    "password": "sin encriptar porque no hay funcionalidad para eso",
+    "username": "test"
+  }
+]
